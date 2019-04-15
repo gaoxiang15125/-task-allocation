@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.onlineseller.goodinfo.goods.mapper.SpuMapper">
+    <insert id="addSpu" parameterType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
+        INSERT INTO spu(goodId, description, picUrl, goodScord, brandId, sellerId, classifyId, price, name) VALUES (#{goodId}, #{description}, #{picUrl},#{goodScord}, #{brandId}, #{sellerId},#{classifyId}, #{price},#{name})
+    </insert>
+    <update id="updateSpuById" parameterType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
+        UPDATE spu set description=#{description}, picUrl=#{picUrl}, goodScord=#{goodScord}, brandId=#{brandId}, sellerId=#{sellerId}, classifyId=#{classifyId}, price=#{price},name=#{name} where goodId =#{goodId}
+    </update>
+    <delete id="deleteSpuById" parameterType="int">
+        DELETE FROM spu WHERE goodId=#{goodId}
+    </delete>
+    <select id="getSpuById" parameterType="int" resultType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
+        SELECT * FROM spu WHERE goodId=#{goodId}
+    </select>
+    <select id="getAllSpu" resultType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
+        SELECT * FROM spu
+    </select>
+    <select id="getSpuByLikeName" parameterType="string" resultType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
+        SELECT * from spu where name like #{likeWord}
+    </select>
+    <select id="getSpuBySellerId" parameterType="int" resultType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
+        select * from spu where sellerId =#{sellerId}
+    </select>
+    <select id="getSpuByClassifyId" parameterType="int" resultType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
+        select * from spu where classifyId=#{classifyId}
+    </select>
+</mapper>

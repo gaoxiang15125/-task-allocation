@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.onlineseller.goodinfo.goods.mapper.AttributeValueMapper">
+
+</mapper>
+
+<!--<insert id="addProductValue" parameterType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">-->
+<!--        INSERT INTO product_values(id, productId, productName, productNameId) VALUES (#{id}, #{productId}, #{productName},#{productNameId})-->
+<!--    </insert>-->
+<!--<update id="updateProductValueById" parameterType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">-->
+<!--        UPDATE product_values set productId=#{productId},productName=#{productName},productNameId=#{productNameId} where id =#{id}-->
+<!--    </update>-->
+<!--<delete id="deleteProductValueById" parameterType="int">-->
+<!--        DELETE FROM product_values WHERE id=#{id}-->
+<!--    </delete>-->
+<!--<select id="getProductValueByProductId" parameterType="int"-->
+<!--        resultType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">-->
+<!--        SELECT * FROM product_values WHERE productId=#{productId}-->
+<!--    </select>-->

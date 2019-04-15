@@ -1,5 +1,9 @@
 package com.onlineseller.goodinfo.goods.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @program: demo
  * @Description:
@@ -7,21 +11,25 @@ package com.onlineseller.goodinfo.goods.entity;
  * @create: 2019-04-12 10:21
  * @email: 630268696@qq.com
  **/
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SpuEntity {
     //商品ID
-    int goodid;
+    int goodId;
     String description;
     //图片url资源，使用‘ ’进行分割
-    String picurl;
+    String picUrl;
     //商品的用户评分，根据用户评论进行计算
-    double goodscord;
+    double goodScord;
     //商品的品牌信息
-    int brandid;
+    int brandId;
     //商品归属的商铺id
-    int sellerid;
+    int sellerId;
     //商品归属的分类，为了直观，采用分类内容进行存储，直接用分类名称作为key值(保留）
-    int classifyid;
+    int classifyId;
     //商品的基础价格
     double price;
+    //商品名称
+    String name;
 }

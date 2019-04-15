@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.onlineseller.goodinfo.goods.mapper.AttributeNameMapper">
+    <insert id="addAttributeName" parameterType="com.onlineseller.goodinfo.goods.entity.AttributeNameEntity">
+        insert into attribute_names(qualityId, qualityName) values (#{qualityId},#{qualityName})
+    </insert>
+    <update id="updateAttributeNameById" parameterType="com.onlineseller.goodinfo.goods.entity.AttributeNameEntity">
+        update attribute_names set qualityName=#{productName} where qualityId=#{qualityId}
+    </update>
+    <delete id="deleteAttributeNameById" parameterType="int">
+        delete from attribute_names where qualityId=#{qualityId}
+    </delete>
+    <select id="getAttributeNameByQualityId" parameterType="int"
+            resultType="com.onlineseller.goodinfo.goods.entity.AttributeNameEntity">
+        select * from attribute_names where qualityId=#{qualityId}
+    </select>
+    <select id="isAttributeNameExists" resultType="java.lang.Integer">
+        select count (*) from attribute_names where qualityName=#{qualityName}
+    </select>
+</mapper>

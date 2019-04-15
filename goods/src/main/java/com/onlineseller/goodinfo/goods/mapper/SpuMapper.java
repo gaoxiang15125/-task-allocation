@@ -1,9 +1,9 @@
-package com.onlineseller.goodinfo.goods.dao;
+package com.onlineseller.goodinfo.goods.mapper;
 
 import com.onlineseller.goodinfo.goods.entity.SpuEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
-import javax.validation.constraints.Null;
 import java.util.List;
 
 /**
@@ -17,15 +17,14 @@ import java.util.List;
 public interface SpuMapper {
     //基础的数据操作接口
     int addSpu(SpuEntity spuEntity);
-    int deleteSpuById(Integer goodid);
-    int updateSpuBuId(SpuEntity spuEntity);
+    int deleteSpuById(int goodId);
+    int updateSpuById(SpuEntity spuEntity);
     //获取指定Id 的Spu 商品对象
-    SpuEntity getSpuById(Integer goodid);
+    SpuEntity getSpuById(int goodId);
     //获取所有Spu 的方法
     List<SpuEntity> getAllSpu();
     //获取特定Spu对象方法
-    List<SpuEntity> getSpuByLikeName();
-    List<SpuEntity> getSpuBySellerId(Integer sellerId);
-    List<SpuEntity> getSpuByClassifyId(Integer classifyId);
-
+    List<SpuEntity> getSpuByLikeName(String likeWord);
+    List<SpuEntity> getSpuBySellerId(int sellerId);
+    List<SpuEntity> getSpuByClassifyId(int classifyId);
 }
