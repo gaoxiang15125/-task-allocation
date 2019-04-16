@@ -3,19 +3,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.onlineseller.goodinfo.goods.mapper.AttributeValueMapper">
-
+    <insert id="addAttributeValue" parameterType="com.onlineseller.goodinfo.goods.entity.AttributeValueEntity">
+--         INSERT INTO attribute_values(id, qualityId, qualityValue, goodsId) VALUES (#{id}, #{qualityId}, #{qualityValue},#{goodsId})
+        INSERT INTO attribute_values(qualityId, qualityValue, goodsId) VALUES (#{qualityId}, #{qualityValue},#{goodsId})
+    </insert>
+    <update id="updateAttributeValueById" parameterType="com.onlineseller.goodinfo.goods.entity.AttributeValueEntity">
+        UPDATE attribute_values set qualityId=#{qualityId},qualityValue=#{qualityValue},goodsId=#{goodsId} where id =#{id}
+    </update>
+    <delete id="deleteAttributeValueById" parameterType="int">
+        DELETE FROM attribute_values WHERE id=#{id}
+    </delete>
+    <select id="getAttributeValueByGoodsId" parameterType="int"
+            resultType="com.onlineseller.goodinfo.goods.entity.AttributeValueEntity">
+        SELECT * FROM attribute_values WHERE goodsId=#{goodsId}
+    </select>
 </mapper>
-
-<!--<insert id="addProductValue" parameterType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">-->
-<!--        INSERT INTO product_values(id, productId, productName, productNameId) VALUES (#{id}, #{productId}, #{productName},#{productNameId})-->
-<!--    </insert>-->
-<!--<update id="updateProductValueById" parameterType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">-->
-<!--        UPDATE product_values set productId=#{productId},productName=#{productName},productNameId=#{productNameId} where id =#{id}-->
-<!--    </update>-->
-<!--<delete id="deleteProductValueById" parameterType="int">-->
-<!--        DELETE FROM product_values WHERE id=#{id}-->
-<!--    </delete>-->
-<!--<select id="getProductValueByProductId" parameterType="int"-->
-<!--        resultType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">-->
-<!--        SELECT * FROM product_values WHERE productId=#{productId}-->
-<!--    </select>-->

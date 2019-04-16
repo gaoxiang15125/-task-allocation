@@ -1,5 +1,9 @@
 package com.onlineseller.goodinfo.goods.mapper;
 
+import com.onlineseller.goodinfo.goods.entity.BrandsEntity;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
 /**
  * @program: demo
  * @Description:
@@ -7,5 +11,11 @@ package com.onlineseller.goodinfo.goods.mapper;
  * @create: 2019-04-15 17:23
  * @email: 630268696@qq.com
  **/
+@Mapper
+@Repository
 public interface BrandsMapper {
+    int addBrands(BrandsEntity brandsEntity);
+    int deleteBrandsById(int id);
+    int updateBrandsById(BrandsEntity brandsEntity);
+    BrandsEntity getBrandsByBrandId(int brandId);
 }

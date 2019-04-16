@@ -2,7 +2,7 @@ package com.onlineseller.goodinfo.goods.mapper;
 
 import com.onlineseller.goodinfo.goods.entity.SpuEntity;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import java.util.List;
  * @email: 630268696@qq.com
  **/
 @Mapper
+@Repository
 public interface SpuMapper {
     //基础的数据操作接口
     int addSpu(SpuEntity spuEntity);

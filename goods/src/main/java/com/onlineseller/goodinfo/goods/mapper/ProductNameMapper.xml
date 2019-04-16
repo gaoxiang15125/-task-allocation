@@ -4,19 +4,21 @@
 
 <mapper namespace="com.onlineseller.goodinfo.goods.mapper.ProductNameMapper">
     <insert id="addProductName" parameterType="com.onlineseller.goodinfo.goods.entity.ProductNameEntity">
-        INSERT into product_names(productNameId,productName) values (#{productNameId},#{productName})
+--         INSERT into standard_names(productNameId,productName) values (#{productNameId},#{productName})
+    INSERT into standard_names(productName) values (#{productName})
     </insert>
     <update id="updateProductNameById" parameterType="com.onlineseller.goodinfo.goods.entity.ProductNameEntity">
-        UPDATE product_names set productName=#{productName} where productNameId =#{productNameId}
+--         UPDATE standard_names set productName=#{productName} where productNameId =#{productNameId}
+    UPDATE standard_names set productName=#{productName} where productNameId =#{productNameId}
     </update>
     <delete id="deleteProductNameById" parameterType="int">
-        DELETE FROM product_names WHERE productNameId=#{productNameId}
+        DELETE FROM standard_names WHERE productNameId=#{productNameId}
     </delete>
     <select id="getProductNameByProductNameId" parameterType="int"
             resultType="com.onlineseller.goodinfo.goods.entity.ProductNameEntity">
-        select * from product_names where productNameId=#{productNameId}
+        select * from standard_names where productNameId=#{productNameId}
     </select>
     <select id="isProductNameExist" parameterType="string" resultType="int">
-        select count (*) from product_names where productName =#{productName}
+        select count (*) from standard_names where productName =#{productName}
     </select>
 </mapper>

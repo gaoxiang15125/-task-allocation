@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.onlineseller.goodinfo.goods.mapper.CategoriesMapper">
+    <insert id="addCategories" parameterType="com.onlineseller.goodinfo.goods.entity.CategoriesEntity">
+#         INSERT INTO categories(classifyId, classifyName, fatherId) VALUES (#{classifyId}, #{classifyName}, #{fatherId})
+        INSERT INTO categories(classifyName, fatherId) VALUES (#{classifyName}, #{fatherId})
+    </insert>
+    <update id="updateCategoriesById" parameterType="com.onlineseller.goodinfo.goods.entity.CategoriesEntity">
+        UPDATE categories set classifyName=#{productId},fatherId=#{fatherId} where classifyId =#{classifyId}
+    </update>
+    <delete id="deleteCategoriesById">
+        DELETE FROM categories WHERE classifyId=#{classifyId}
+    </delete>
+    <select id="getCategoriesByClassifyId" parameterType="int"
+            resultType="com.onlineseller.goodinfo.goods.entity.CategoriesEntity">
+        select * from categories where classifyId=#{classifyId}
+    </select>
+    <select id="getCategoriesByClassifyName" parameterType="string"
+            resultType="com.onlineseller.goodinfo.goods.entity.CategoriesEntity">
+        select * from categories where classifyName=#{classifyName}
+    </select>
+    <select id="isClassifyNameExists" resultType="java.lang.Integer">
+        select count (*) from categories where classifyName =#{classifyName};
+    </select>
+</mapper>

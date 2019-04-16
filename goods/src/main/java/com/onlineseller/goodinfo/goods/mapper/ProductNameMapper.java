@@ -1,8 +1,8 @@
 package com.onlineseller.goodinfo.goods.mapper;
 
 import com.onlineseller.goodinfo.goods.entity.ProductNameEntity;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * @program: demo
@@ -11,6 +11,8 @@ import java.util.List;
  * @create: 2019-04-15 14:31
  * @email: 630268696@qq.com
  **/
+@Mapper
+@Repository
 public interface ProductNameMapper {
     int addProductName(ProductNameEntity productNameEntity);
     int deleteProductNameById(int productNameId);

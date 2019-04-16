@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.onlineseller.goodinfo.goods.mapper.BrandsMapper">
+    <insert id="addBrands" parameterType="com.onlineseller.goodinfo.goods.entity.BrandsEntity">
+--         INSERT INTO brands(brandId, brandName, description) VALUES (#{brandId}, #{brandName}, #{description})
+    INSERT INTO brands(brandName, description) VALUES  (#{brandName}, #{description})
+    </insert>
+    <update id="updateBrandsById" parameterType="com.onlineseller.goodinfo.goods.entity.BrandsEntity">
+        UPDATE brands set brandName=#{brandName},description=#{description} where brandId =#{brandId}
+    </update>
+    <delete id="deleteBrandsById" parameterType="com.onlineseller.goodinfo.goods.entity.BrandsEntity">
+        DELETE FROM brands WHERE brandId=#{brandId}
+    </delete>
+    <select id="getBrandsByBrandId" parameterType="com.onlineseller.goodinfo.goods.entity.BrandsEntity"
+            resultType="com.onlineseller.goodinfo.goods.entity.BrandsEntity">
+        SELECT * FROM brands WHERE brandId=#{brandId}
+    </select>
+</mapper>

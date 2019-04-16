@@ -5,16 +5,17 @@
 <mapper namespace="com.onlineseller.goodinfo.goods.mapper.ProductValueMapper">
 
     <insert id="addProductValue" parameterType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">
-        INSERT INTO product_values(id, productId, productName, productNameId) VALUES (#{id}, #{productId}, #{productName},#{productNameId})
+--         INSERT INTO standard_values(id, productId, productName, productNameId) VALUES (#{id}, #{productId}, #{productName},#{productNameId})
+    INSERT INTO standard_values(goodsId, productName, productNameId) VALUES (#{productId}, #{productName},#{productNameId})
     </insert>
     <update id="updateProductValueById" parameterType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">
-        UPDATE product_values set productId=#{productId},productName=#{productName},productNameId=#{productNameId} where id =#{id}
+        UPDATE standard_values set goodsId=#{productId},productName=#{productName},productNameId=#{productNameId} where id =#{id}
     </update>
     <delete id="deleteProductValueById" parameterType="int">
-        DELETE FROM product_values WHERE id=#{id}
+        DELETE FROM standard_values WHERE id=#{id}
     </delete>
     <select id="getProductValueByProductId" parameterType="int"
             resultType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">
-        SELECT * FROM product_values WHERE productId=#{productId}
+        SELECT * FROM standard_values WHERE goodsId=#{productId}
     </select>
 </mapper>

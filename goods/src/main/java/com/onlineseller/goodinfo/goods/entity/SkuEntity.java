@@ -18,5 +18,5 @@ public class SkuEntity {
 
     int productId;
     int goodId;
-    double moneyChange;
+    double price;
 }

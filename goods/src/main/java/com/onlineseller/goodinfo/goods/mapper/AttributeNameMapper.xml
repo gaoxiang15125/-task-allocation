@@ -4,7 +4,8 @@
 
 <mapper namespace="com.onlineseller.goodinfo.goods.mapper.AttributeNameMapper">
     <insert id="addAttributeName" parameterType="com.onlineseller.goodinfo.goods.entity.AttributeNameEntity">
-        insert into attribute_names(qualityId, qualityName) values (#{qualityId},#{qualityName})
+--         insert into attribute_names(qualityId, qualityName) values (#{qualityId},#{qualityName})
+        insert into attribute_names(qualityName) values (#{qualityName})
     </insert>
     <update id="updateAttributeNameById" parameterType="com.onlineseller.goodinfo.goods.entity.AttributeNameEntity">
         update attribute_names set qualityName=#{productName} where qualityId=#{qualityId}
