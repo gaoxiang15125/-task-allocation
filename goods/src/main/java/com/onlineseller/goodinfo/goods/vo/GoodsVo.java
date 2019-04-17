@@ -18,22 +18,31 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GoodsVo {
-    //对应数据库位置，如非数据库中goodsVo则无初值，不向外部暴漏
-    //int goodId;
+    //对应数据库位置，如非数据库中goodsVo则无初值
+    int goodId;
     //商品信息描述
     String description;
     //用户对商品的评分，可以不显示
     double goodScore;
     //品牌信息
     String brand;
-    //商品分类信息,String 中存储所属分类，直接get获取所属分类
-    Map<Integer,String> classify;
+    //对品牌信息的详细描述
+    String brandDescription;
+    //商品分类信息,String 中存储所属分类,思考后决定使用List存储，父节点在前在后
+    List<String> classifies;
     //图片Url存储链表，直接存储对应图片的Url
     List<String> picUrls;
     //商品的名称
     String goodsName;
     //该商品对应的商铺Id
     int sellerId;
-    //该商品包含的型号信息采用型号vo进行存储管理
+    //商品价格
+    double price;
+    //该商品包含的型号属性信息以及可选的属性值，Map的key值为属性名称，value值为属性内容
+    Map<String,Map<String,StandardVo>> standards;
+    //型号ID本质上为属性ID的一种组合，在用户下单后生成，保留在本属性中，关于采用集合还是单一值在进行考虑
+    String standardID;
+    //该商品整体的基本属性信息，以Map的形式存储
+    Map<String,String> attributes;
 
 }

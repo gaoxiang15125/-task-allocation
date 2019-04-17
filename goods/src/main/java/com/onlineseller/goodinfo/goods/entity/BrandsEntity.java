@@ -15,8 +15,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BrandsEntity {
+
     int brandId;
     String brandName;
     String description;
 
+    public BrandsEntity(String brandName, String description) {
+        this.brandName = brandName;
+        this.description = description;
+    }
 }

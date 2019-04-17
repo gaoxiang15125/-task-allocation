@@ -17,7 +17,8 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StandardVo {
-    //存储型号属性与值的map类
-    Map<String,String> standardMap;
-    double price;
+    //存储属性值与属性名称 再加上价格变动量
+    String standardName;
+    String standardValue;
+    double moneyChange;
 }

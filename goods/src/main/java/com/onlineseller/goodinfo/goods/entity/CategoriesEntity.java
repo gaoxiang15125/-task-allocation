@@ -20,4 +20,13 @@ public class CategoriesEntity {
     String classifyName;
     int fatherId;
 
+    public CategoriesEntity(String classifyName, int fatherId) {
+        this.classifyName = classifyName;
+        this.fatherId = fatherId;
+    }
+
+    public CategoriesEntity(String classifyName) {
+        this.classifyName = classifyName;
+    }
+
 }

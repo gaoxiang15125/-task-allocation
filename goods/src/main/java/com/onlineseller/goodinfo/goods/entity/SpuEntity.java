@@ -32,4 +32,15 @@ public class SpuEntity {
     String name;
     //商品基础价格
     double price;
+
+    public SpuEntity(String description, String picUrl, double goodScore, int brandId, int sellerId, int classifyId, String name, double price) {
+        this.description = description;
+        this.picUrl = picUrl;
+        this.goodScore = goodScore;
+        this.brandId = brandId;
+        this.sellerId = sellerId;
+        this.classifyId = classifyId;
+        this.name = name;
+        this.price = price;
+    }
 }

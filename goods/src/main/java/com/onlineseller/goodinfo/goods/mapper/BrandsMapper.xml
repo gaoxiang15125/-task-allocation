@@ -5,7 +5,7 @@
 <mapper namespace="com.onlineseller.goodinfo.goods.mapper.BrandsMapper">
     <insert id="addBrands" parameterType="com.onlineseller.goodinfo.goods.entity.BrandsEntity">
 --         INSERT INTO brands(brandId, brandName, description) VALUES (#{brandId}, #{brandName}, #{description})
-    INSERT INTO brands(brandName, description) VALUES  (#{brandName}, #{description})
+        INSERT INTO brands(brandName, description) VALUES  (#{brandName}, #{description})
     </insert>
     <update id="updateBrandsById" parameterType="com.onlineseller.goodinfo.goods.entity.BrandsEntity">
         UPDATE brands set brandName=#{brandName},description=#{description} where brandId =#{brandId}
@@ -16,5 +16,14 @@
     <select id="getBrandsByBrandId" parameterType="com.onlineseller.goodinfo.goods.entity.BrandsEntity"
             resultType="com.onlineseller.goodinfo.goods.entity.BrandsEntity">
         SELECT * FROM brands WHERE brandId=#{brandId}
+    </select>
+    <select id="getBrandsByBrandName" parameterType="string" resultType="com.onlineseller.goodinfo.goods.entity.BrandsEntity">
+        SELECT * FROM brands WHERE brandName=#{brandName}
+    </select>
+    <select id="isBrandNameExist" resultType="java.lang.Integer">
+        select count (*) from brands where brandName=#{brandName}
+    </select>
+    <select id="getBrandIdByBrandName" parameterType="string" resultType="java.lang.Integer">
+        select brandId from brands where brandName=#{brandName}
     </select>
 </mapper>

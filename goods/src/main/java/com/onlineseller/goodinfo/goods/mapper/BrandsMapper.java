@@ -18,4 +18,9 @@ public interface BrandsMapper {
     int deleteBrandsById(int id);
     int updateBrandsById(BrandsEntity brandsEntity);
     BrandsEntity getBrandsByBrandId(int brandId);
+    BrandsEntity getBrandsByBrandName(String brandName);
+    //仅仅获取商标ID
+    int getBrandIdByBrandName(String brandName);
+    int isBrandNameExist(String brandName);
+
 }
