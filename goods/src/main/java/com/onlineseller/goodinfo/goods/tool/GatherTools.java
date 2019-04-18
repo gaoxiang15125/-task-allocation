@@ -1,5 +1,6 @@
 package com.onlineseller.goodinfo.goods.tool;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,20 +11,32 @@ import java.util.List;
  * @email: 630268696@qq.com
  **/
 public class GatherTools {
+
+    public static String picUrlTag = ";";
     /**
      *
      * @param stringList 功能看名字，之后就不写注释了
      * @return
      */
-    public static String ListToString(List<String> stringList){
+    public static String ListToString(List<String> stringList,String tag){
         StringBuilder stringBuilder =new StringBuilder();
         for(String string:stringList){
-            stringBuilder.append(string+";");
+            stringBuilder.append(string+tag);
         }
         return stringBuilder.toString();
     }
 
-    public static String StringToList(String listString){
-
+    /**
+     * @param listString 需要进行分割的字符串
+     * @param tag 目标分割
+     * @return
+     */
+    public static ArrayList<String> StringToList(String listString, String tag){
+        String[] lists = listString.split(tag);
+        ArrayList<String> arrayList = new ArrayList<>();
+        for(String str:lists){
+            arrayList.add(str);
+        }
+        return arrayList;
     }
 }

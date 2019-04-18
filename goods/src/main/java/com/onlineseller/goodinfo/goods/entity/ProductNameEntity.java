@@ -17,4 +17,8 @@ import lombok.NoArgsConstructor;
 public class ProductNameEntity {
     int productNameId;
     String productName;
+
+    public ProductNameEntity(String productName) {
+        this.productName = productName;
+    }
 }

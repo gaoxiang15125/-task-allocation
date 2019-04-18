@@ -18,5 +18,8 @@ public interface ProductNameMapper {
     int deleteProductNameById(int productNameId);
     int updateProductNameById(ProductNameEntity productNameEntity);
     ProductNameEntity getProductNameByProductNameId(int productNameId);
+    //获取对应属性的ID
+    int getProductNameIDByProductName(String productName);
     int isProductNameExist(String productName);
+
 }

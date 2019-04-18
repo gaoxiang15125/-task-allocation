@@ -41,7 +41,7 @@ public class GoodsVo {
     //该商品包含的型号属性信息以及可选的属性值，Map的key值为属性名称，value值为属性内容
     Map<String,Map<String,StandardVo>> standards;
     //型号ID本质上为属性ID的一种组合，在用户下单后生成，保留在本属性中，关于采用集合还是单一值在进行考虑
-    String standardID;
+    //String standardID;
     //该商品整体的基本属性信息，以Map的形式存储
     Map<String,String> attributes;
 

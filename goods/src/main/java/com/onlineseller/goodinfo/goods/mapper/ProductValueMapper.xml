@@ -6,15 +6,15 @@
 
     <insert id="addProductValue" parameterType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">
 --         INSERT INTO standard_values(id, productId, productName, productNameId) VALUES (#{id}, #{productId}, #{productName},#{productNameId})
-    INSERT INTO standard_values(goodsId, productName, productNameId,moneyChange) VALUES (#{productId}, #{productName},#{productNameId},#{moneyChange})
+        INSERT INTO standard_values(goodsId, productName, productNameId,moneyChange,picUrl) VALUES (#{goodsId}, #{productName},#{productNameId},#{moneyChange},#{picUrl})
     </insert>
     <update id="updateProductValueById" parameterType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">
-        UPDATE standard_values set goodsId=#{goodsId},productName=#{productName},productNameId=#{productNameId},moneyChange=#{moneyChange} where id =#{id}
+        UPDATE standard_values set goodsId=#{goodsId},productName=#{productName},productNameId=#{productNameId},moneyChange=#{moneyChange},picUrl=#{picUrl} where id =#{id}
     </update>
     <delete id="deleteProductValueById" parameterType="int">
         DELETE FROM standard_values WHERE id=#{id}
     </delete>
-    <select id="getProductValueByProductId" parameterType="int"
+    <select id="getProductValueByGoodsId" parameterType="int"
             resultType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">
         SELECT * FROM standard_values WHERE goodsId=#{goodsId}
     </select>

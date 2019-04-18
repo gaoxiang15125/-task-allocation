@@ -21,4 +21,7 @@
     <select id="isProductNameExist" parameterType="string" resultType="int">
         select count (*) from standard_names where productName =#{productName}
     </select>
+    <select id="getProductNameIDByProductName" resultType="java.lang.Integer">
+        select productNameId from standard_names where productName =#{productName}
+    </select>
 </mapper>

@@ -17,9 +17,17 @@ import lombok.NoArgsConstructor;
 public class ProductValueEntity {
 
     int id;
-    int productId;
+    int goodsId;
     String productName;
     int productNameId;
     double moneyChange;
+    String picUrl;
 
+    public ProductValueEntity(int goodsId, String productName, int productNameId, double moneyChange,String picUrl) {
+        this.goodsId = goodsId;
+        this.productName = productName;
+        this.productNameId = productNameId;
+        this.moneyChange = moneyChange;
+        this.picUrl = picUrl;
+    }
 }

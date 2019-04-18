@@ -21,4 +21,6 @@ public class StandardVo {
     String standardName;
     String standardValue;
     double moneyChange;
+    String picUrl;
+
 }

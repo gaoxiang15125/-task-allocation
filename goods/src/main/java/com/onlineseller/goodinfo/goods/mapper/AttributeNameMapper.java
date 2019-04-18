@@ -18,5 +18,6 @@ public interface AttributeNameMapper {
     int deleteAttributeNameById(int qualityId);
     int updateAttributeNameById(AttributeNameEntity attributeNameEntity);
     AttributeNameEntity getAttributeNameByQualityId(int qualityId);
+    int getQualityIdByQualityName(String qualityName);
     int isAttributeNameExists(String qualityName);
 }

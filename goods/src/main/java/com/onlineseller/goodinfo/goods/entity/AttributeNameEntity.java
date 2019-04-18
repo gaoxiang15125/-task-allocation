@@ -18,4 +18,7 @@ public class AttributeNameEntity {
     int qualityId;
     String qualityName;
 
+    public AttributeNameEntity(String qualityName) {
+        this.qualityName = qualityName;
+    }
 }

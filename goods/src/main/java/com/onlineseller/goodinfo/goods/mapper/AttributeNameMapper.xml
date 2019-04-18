@@ -20,4 +20,7 @@
     <select id="isAttributeNameExists" resultType="java.lang.Integer">
         select count (*) from attribute_names where qualityName=#{qualityName}
     </select>
+    <select id="getQualityIdByQualityName" resultType="java.lang.Integer">
+        select qualityId from attribute_names where qualityName=#{qualityName}
+    </select>
 </mapper>

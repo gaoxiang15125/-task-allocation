@@ -20,4 +20,10 @@ public class AttributeValueEntity {
     String qualityValue;
     int goodsId;
 
+    public AttributeValueEntity(int qualityId, String qualityValue, int goodsId) {
+        this.qualityId = qualityId;
+        this.qualityValue = qualityValue;
+        this.goodsId = goodsId;
+    }
+
 }
