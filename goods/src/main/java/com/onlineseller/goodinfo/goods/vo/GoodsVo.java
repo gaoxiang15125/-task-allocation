@@ -19,11 +19,11 @@ import java.util.Map;
 @AllArgsConstructor
 public class GoodsVo {
     //对应数据库位置，如非数据库中goodsVo则无初值
-    int goodId;
+    int goodsID;
     //商品信息描述
     String description;
     //用户对商品的评分，可以不显示
-    double goodScore;
+    double goodsScore;
     //品牌信息
     String brand;
     //对品牌信息的详细描述

@@ -6,7 +6,6 @@ import com.onlineseller.goodinfo.goods.tool.EntityVoChangeTools;
 import com.onlineseller.goodinfo.goods.tool.GatherTools;
 import com.onlineseller.goodinfo.goods.vo.GoodsVo;
 import com.onlineseller.goodinfo.goods.vo.StandardVo;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.AttrDecls;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,11 +56,11 @@ public class GoodsService {
         //将商品的分类信息绑定到数据库 分类信息使用链表存储
         int classifyID = addClassifies(goodsVo.getClassifies());
         //存储spuEntity，添加商品
-        SpuEntity spuEntity = new SpuEntity(goodsVo.getDescription(),GatherTools.ListToString(goodsVo.getPicUrls(),GatherTools.picUrlTag),goodsVo.getGoodScore(),brandsEntity.getBrandId(),goodsVo.getSellerId(),classifyID,goodsVo.getGoodsName(),goodsVo.getPrice());
+        SpuEntity spuEntity = new SpuEntity(goodsVo.getDescription(),GatherTools.ListToString(goodsVo.getPicUrls(),GatherTools.picUrlTag),goodsVo.getGoodsScore(),brandsEntity.getBrandId(),goodsVo.getSellerId(),classifyID,goodsVo.getGoodsName(),goodsVo.getPrice());
         spuMapper.addSpu(spuEntity);
         //商品基本属性信息
-        addAttributes(goodsVo.getAttributes(),goodsVo.getGoodId());
-        addStandards(goodsVo.getStandards(),goodsVo.getGoodId());
+        addAttributes(goodsVo.getAttributes(),goodsVo.getGoodsID());
+        addStandards(goodsVo.getStandards(),goodsVo.getGoodsID());
         //至此商品所有信息存储完毕
         return true;
     }
@@ -71,21 +70,48 @@ public class GoodsService {
      * @return 存储商品信息的实体类
      */
     public GoodsVo getGoodsVoById(int goodId){
-
+        SpuEntity spuEntity = spuMapper.getSpuById(goodId);
+        return getGoodsBySpuEntity(spuEntity);
     }
 
     public List<GoodsVo> getGoodsVoBySellerId(int sellerId){
-
+        List<SpuEntity> spuEntities = spuMapper.getSpuBySellerId(sellerId);
+        List<GoodsVo> goodsVos = new ArrayList<>();
+        for(SpuEntity spuEntity:spuEntities){
+            GoodsVo goodsVo = getGoodsBySpuEntity(spuEntity);
+            goodsVos.add(goodsVo);
+        }
+        return goodsVos;
     }
-
+    //此处需要进一步进行优化，保证可以多级获取对应分类的商品
     public List<GoodsVo> getGoodsVoByClassifyId(int classifyId){
-
+        List<SpuEntity> spuEntities = spuMapper.getSpuByClassifyId(classifyId);
+        List<GoodsVo> goodsVos = new ArrayList<>();
+        for(SpuEntity spuEntity:spuEntities){
+            GoodsVo goodsVo = getGoodsBySpuEntity(spuEntity);
+            goodsVos.add(goodsVo);
+        }
+        return goodsVos;
     }
+
     public List<GoodsVo> getAllGoods(){
-
+        List<SpuEntity> spuEntities = spuMapper.getAllSpu();
+        List<GoodsVo> goodsVos = new ArrayList<>();
+        for(SpuEntity spuEntity:spuEntities){
+            GoodsVo goodsVo = getGoodsBySpuEntity(spuEntity);
+            goodsVos.add(goodsVo);
+        }
+        return goodsVos;
     }
-    public List<GoodsVo> getGoodsByLikeName(String likeWord){
 
+    public List<GoodsVo> getGoodsByLikeName(String likeWord){
+        List<SpuEntity> spuEntities = spuMapper.getSpuByLikeName(likeWord);
+        List<GoodsVo> goodsVos = new ArrayList<>();
+        for(SpuEntity spuEntity:spuEntities){
+            GoodsVo goodsVo = getGoodsBySpuEntity(spuEntity);
+            goodsVos.add(goodsVo);
+        }
+        return goodsVos;
     }
 
     /**
@@ -144,7 +170,6 @@ public class GoodsService {
         }
         return true;
     }
-
     /**
      * 通过此方法将从数据库获取的spuEntity对象装载成goodsVo
      * @param spuEntity 与数据库中商品直接关联的实体类
@@ -153,9 +178,9 @@ public class GoodsService {
     private GoodsVo getGoodsBySpuEntity(SpuEntity spuEntity){
         //根据属性顺序装在GoodsVo
         GoodsVo goodsVo = new GoodsVo();
-        goodsVo.setGoodId(spuEntity.getGoodId());
+        goodsVo.setGoodsID(spuEntity.getGoodId());
         goodsVo.setDescription(spuEntity.getDescription());
-        goodsVo.setGoodScore(spuEntity.getGoodScore());
+        goodsVo.setGoodsScore(spuEntity.getGoodScore());
         BrandsEntity brandsEntity = brandsMapper.getBrandsByBrandId(spuEntity.getBrandId());
         goodsVo.setBrand(brandsEntity.getBrandName());
         goodsVo.setBrandDescription(brandsEntity.getDescription());
@@ -166,9 +191,9 @@ public class GoodsService {
         goodsVo.setSellerId(spuEntity.getSellerId());
         goodsVo.setPrice(spuEntity.getPrice());
         goodsVo.setStandards(getStandardsForGoodsVo(spuEntity.getGoodId()));
-
+        goodsVo.setAttributes(getAttributeForGoodsVo(spuEntity.getGoodId()));
+        return goodsVo;
     }
-
     /**
      * @param classifyID 商品spu里存储的分类子节点
      * @return 由分类构成的链表结构
@@ -191,7 +216,6 @@ public class GoodsService {
         }
        return strings;
     }
-
     /**
      * 根据goodsID填充其对应的HashMap值
      * @param goodsID 需要装配的商品的键值
@@ -202,7 +226,7 @@ public class GoodsService {
         List<StandardVo> standardVos = new ArrayList<>();
         //存储属性与对应Id的map集合,缓存资源的map类,用来减少查询次数
         Map<Integer,String> standardId = new HashMap<>();
-        int productNameID;
+        Integer productNameID;
         String standardName;
         for(ProductValueEntity productValueEntity:productValueEntities){
             productNameID = productValueEntity.getProductNameId();
@@ -231,5 +255,30 @@ public class GoodsService {
             }
         }
         return stringMapMap;
+    }
+    private HashMap<String,String> getAttributeForGoodsVo(int goodsID){
+        List<AttributeValueEntity> attributeValueEntities = attributeValueMapper.getAttributeValueByGoodsId(goodsID);
+        //List<StandardVo> standardVos = new ArrayList<>();
+        //存储属性与对应Id的map集合,缓存资源的map类,用来减少查询次数
+        Map<Integer,String> attributeId = new HashMap<>();
+        HashMap<String,String> attributeMap = new HashMap<>();
+        Integer attributeNameID;
+        String attributeName;
+        String attributeValue;
+        for(AttributeValueEntity attributeValueEntity:attributeValueEntities){
+            attributeNameID = attributeValueEntity.getQualityId();
+            if(attributeId.containsKey(attributeNameID)){
+                attributeName = attributeId.get(attributeNameID);
+
+            }else{
+                attributeName = attributeNameMapper.getAttributeNameByQualityId(attributeNameID).getQualityName();
+                attributeId.put(attributeNameID,attributeName);
+            }
+            attributeValue = attributeValueEntity.getQualityValue();
+            attributeMap.put(attributeName,attributeValue);
+        }
+        //至此，属性全部保留到 attributeId之中
+
+        return attributeMap;
     }
 }
