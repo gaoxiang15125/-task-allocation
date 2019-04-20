@@ -13,6 +13,7 @@ import java.util.List;
 public class GatherTools {
 
     public static String picUrlTag = ";";
+    public static String standardTag = "-";
     /**
      *
      * @param stringList 功能看名字，之后就不写注释了

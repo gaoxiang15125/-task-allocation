@@ -114,6 +114,13 @@ public class GoodsService {
         return goodsVos;
     }
 
+    public boolean changeGoods(GoodsVo goodsVo){
+        return true;
+    }
+
+    public boolean cancelGoods(GoodsVo goodsVo){
+        return true;
+    }
     /**
      * @param classifies 链表结构的分类列
      * @return
@@ -281,4 +288,5 @@ public class GoodsService {
 
         return attributeMap;
     }
+
 }
