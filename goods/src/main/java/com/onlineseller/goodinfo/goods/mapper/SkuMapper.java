@@ -20,4 +20,5 @@ public interface SkuMapper {
     int deleteSkuById(int productId);
     int updateSkuById(SkuEntity skuEntity);
     List<SkuEntity> getSkuByGoodId(int goodId);
+    SkuEntity getSkuByProductId(String productId);
 }

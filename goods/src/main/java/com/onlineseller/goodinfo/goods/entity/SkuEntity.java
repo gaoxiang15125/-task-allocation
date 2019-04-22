@@ -16,7 +16,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SkuEntity {
 
-    int productId;
+    String productId;
     int goodId;
     double price;
+    String picUrl;
+
+    public SkuEntity(int goodId, double price, String picUrl) {
+        this.goodId = goodId;
+        this.price = price;
+        this.picUrl = picUrl;
+    }
 }

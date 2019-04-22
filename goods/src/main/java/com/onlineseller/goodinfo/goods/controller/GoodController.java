@@ -1,16 +1,14 @@
 package com.onlineseller.goodinfo.goods.controller;
 
+import com.onlineseller.goodinfo.goods.mapper.SpuMapper;
 import com.onlineseller.goodinfo.goods.service.GoodsService;
 import com.onlineseller.goodinfo.goods.vo.CartItemVo;
 import com.onlineseller.goodinfo.goods.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 /**
@@ -21,10 +19,12 @@ import java.util.List;
  * @email: 630268696@qq.com
  **/
 @Controller
-@RequestMapping(name = "/goods")
+@RequestMapping(name = "/goodsService")
 public class GoodController {
     @Autowired
     GoodsService goodsService;
+    @Autowired
+    SpuMapper spuMapper;
     //该对象用于获取访问请求的上下文信息，此处不需要使用
 //    @Autowired
 //    private DiscoveryClient client;
@@ -59,23 +59,15 @@ public class GoodController {
         return goodsService.getGoodsByLikeName(name);
     }
 
-    //订单模块需要的接口
-    @RequestMapping(value = "/getCartItemBySkus",method = RequestMethod.GET)
-    public List<CartItemVo> getCartItemVOs(List<String> sku){
-//        for(String sku:skus){
-//
-//        }
-//        for()
-        return null;
-    }
-    @RequestMapping(value = "/SkuValid",method = RequestMethod.GET)
-    public String SkuValid(String sku){
-        StringBuilder stringBuilder = new StringBuilder();
-        return stringBuilder.toString();
-    }
-
     @GetMapping("/changeGoods")
     public boolean changeGoods(GoodsVo goodsVo){
-
+        spuMapper.deleteSpuByIDThroughStatus(goodsVo.getGoodsID());
+        goodsService.addGoodsVo(goodsVo);
+        return true;
+    }
+    @GetMapping("/cancelGoods")
+    public boolean cancelGoods(int goodsID){
+        spuMapper.deleteSpuByIDThroughStatus(goodsID);
+        return true;
     }
 }

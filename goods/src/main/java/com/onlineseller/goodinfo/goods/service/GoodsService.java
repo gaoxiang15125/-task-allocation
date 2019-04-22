@@ -74,6 +74,10 @@ public class GoodsService {
         return getGoodsBySpuEntity(spuEntity);
     }
 
+    public String getGoodsNameById(int goodId){
+        SpuEntity spuEntity = spuMapper.getSpuById(goodId);
+        return spuEntity.getName();
+    }
     public List<GoodsVo> getGoodsVoBySellerId(int sellerId){
         List<SpuEntity> spuEntities = spuMapper.getSpuBySellerId(sellerId);
         List<GoodsVo> goodsVos = new ArrayList<>();
@@ -113,14 +117,14 @@ public class GoodsService {
         }
         return goodsVos;
     }
-
-    public boolean changeGoods(GoodsVo goodsVo){
-        return true;
-    }
-
-    public boolean cancelGoods(GoodsVo goodsVo){
-        return true;
-    }
+//
+//    public boolean changeGoods(GoodsVo goodsVo){
+//        return true;
+//    }
+//
+//    public boolean cancelGoods(GoodsVo goodsVo){
+//        return true;
+//    }
     /**
      * @param classifies 链表结构的分类列
      * @return
@@ -243,7 +247,7 @@ public class GoodsService {
                 standardName = productNameMapper.getProductNameByProductNameId(productNameID).getProductName();
                 standardId.put(productNameID,standardName);
             }
-            StandardVo standardVo = EntityVoChangeTools.changeProductValueEntitToStandardVo(productValueEntity,standardName);
+            StandardVo standardVo = EntityVoChangeTools.changeProductValueEntityToStandardVo(productValueEntity,standardName);
             standardVos.add(standardVo);
         }
         HashMap<String,Map<String,StandardVo>> stringMapMap = new HashMap<>();

@@ -1,6 +1,8 @@
 package com.onlineseller.goodinfo.goods.tool;
 
 import com.onlineseller.goodinfo.goods.entity.ProductValueEntity;
+import com.onlineseller.goodinfo.goods.entity.SkuEntity;
+import com.onlineseller.goodinfo.goods.vo.CartItemVo;
 import com.onlineseller.goodinfo.goods.vo.GoodsVo;
 import com.onlineseller.goodinfo.goods.vo.StandardVo;
 
@@ -12,7 +14,6 @@ import com.onlineseller.goodinfo.goods.vo.StandardVo;
  * @email: 630268696@qq.com
  **/
 public class EntityVoChangeTools {
-
     /**
      * @param standardVo 存储型号信息的实体类
      * @param goodsId 型号对应的商品ID
@@ -22,13 +23,15 @@ public class EntityVoChangeTools {
     public static ProductValueEntity changeStandardVoToProductValueEntity(StandardVo standardVo,int goodsId,int productNameId){
         return new ProductValueEntity(goodsId,standardVo.getStandardName(),productNameId,standardVo.getMoneyChange(),standardVo.getPicUrl());
     }
-
     /**
      * @param productValueEntity
      * @param standardName 对应的型号属性名称
      * @return
      */
-    public static StandardVo changeProductValueEntitToStandardVo(ProductValueEntity productValueEntity,String standardName){
+    public static StandardVo changeProductValueEntityToStandardVo(ProductValueEntity productValueEntity, String standardName){
         return new StandardVo(standardName,productValueEntity.getProductName(),productValueEntity.getMoneyChange(),productValueEntity.getPicUrl());
+    }
+    public static CartItemVo changeSkuEntityToCartItemVo(SkuEntity skuEntity,String goodsName){
+        return new CartItemVo(skuEntity.getProductId(),skuEntity.getPicUrl(),skuEntity.getPrice(),goodsName);
     }
 }

@@ -18,4 +18,7 @@
             resultType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">
         SELECT * FROM standard_values WHERE goodsId=#{goodsId}
     </select>
+    <select id="getProductValueById" parameterType="int" resultType="com.onlineseller.goodinfo.goods.entity.ProductValueEntity">
+        select * from standard_values where id=#{id}
+    </select>
 </mapper>

@@ -5,15 +5,18 @@
 <mapper namespace="com.onlineseller.goodinfo.goods.mapper.SkuMapper">
     <insert id="addSku" parameterType="com.onlineseller.goodinfo.goods.entity.SkuEntity">
 --         INSERT INTO sku(productId, goodId, price) VALUES (#{productId}, #{goodId}, #{price})
-        INSERT INTO sku(goodId, price) VALUES (#{goodId}, #{price})
+        INSERT INTO sku(goodId, price,picUrl) VALUES (#{goodId}, #{price},#{picUrl})
     </insert>
     <update id="updateSkuById" parameterType="com.onlineseller.goodinfo.goods.entity.SkuEntity">
-        UPDATE sku set goodId=#{goodId}, price=#{price} where productId =#{productId}
+        UPDATE sku set goodId=#{goodId}, price=#{price},picUrl=#{picUrl} where productId =#{productId}
     </update>
     <delete id="deleteSkuById" parameterType="int">
         DELETE FROM sku WHERE productId=#{productId}
     </delete>
     <select id="getSkuByGoodId" parameterType="int" resultType="com.onlineseller.goodinfo.goods.entity.SkuEntity">
         SELECT * FROM sku WHERE goodId=#{goodId}
+    </select>
+    <select id="getSkuByProductId" parameterType="String" resultType="com.onlineseller.goodinfo.goods.entity.SkuEntity">
+        SELECT * FROM sku WHERE productId=#{productId}
     </select>
 </mapper>

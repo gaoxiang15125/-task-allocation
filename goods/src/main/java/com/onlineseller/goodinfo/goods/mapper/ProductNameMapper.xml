@@ -24,4 +24,7 @@
     <select id="getProductNameIDByProductName" resultType="java.lang.Integer">
         select productNameId from standard_names where productName =#{productName}
     </select>
+    <select id="getNameByProductNameId" parameterType="int" resultType="java.lang.String">
+        select productName from standard_names where productNameId=#{productNameId}
+    </select>
 </mapper>

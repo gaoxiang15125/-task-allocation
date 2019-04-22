@@ -5,7 +5,7 @@
 <mapper namespace="com.onlineseller.goodinfo.goods.mapper.SpuMapper">
     <insert id="addSpu" parameterType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
 #         INSERT INTO spu(goodId, description, picUrl, goodScore, brandId, sellerId, classifyId,name) VALUES (#{goodId}, #{description}, #{picUrl},#{goodScore}, #{brandId}, #{sellerId},#{classifyId},#{name})
-        INSERT INTO spu(description, picUrl, goodScore, brandId, sellerId, classifyId,name,price) VALUES (#{description}, #{picUrl},#{goodScore}, #{brandId}, #{sellerId},#{classifyId},#{name},#{price})
+        INSERT INTO spu(description, picUrl, goodScore, brandId, sellerId, classifyId,name,price,status) VALUES (#{description}, #{picUrl},#{goodScore}, #{brandId}, #{sellerId},#{classifyId},#{name},#{price},0)
     </insert>
     <update id="updateSpuById" parameterType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
         UPDATE spu set description=#{description}, picUrl=#{picUrl}, goodScore=#{goodScore}, brandId=#{brandId}, sellerId=#{sellerId}, classifyId=#{classifyId}, name=#{name},price=#{price} where goodId =#{goodId}
@@ -13,6 +13,9 @@
     <delete id="deleteSpuById" parameterType="int">
         DELETE FROM spu WHERE goodId=#{goodId}
     </delete>
+    <update id="deleteSpuByIDThroughStatus" parameterType="int">
+        UPDATE spu set status=-1 WHERE goodId=#{goodId}
+    </update>
     <select id="getSpuById" parameterType="int" resultType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
         SELECT * FROM spu WHERE goodId=#{goodId}
     </select>

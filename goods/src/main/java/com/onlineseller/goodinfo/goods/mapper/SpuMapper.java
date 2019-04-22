@@ -19,6 +19,7 @@ public interface SpuMapper {
     //基础的数据操作接口
     int addSpu(SpuEntity spuEntity);
     int deleteSpuById(int goodId);
+    int deleteSpuByIDThroughStatus(int goodId);
     int updateSpuById(SpuEntity spuEntity);
     //获取指定Id 的Spu 商品对象
     SpuEntity getSpuById(int goodId);
@@ -28,4 +29,5 @@ public interface SpuMapper {
     List<SpuEntity> getSpuByLikeName(String likeWord);
     List<SpuEntity> getSpuBySellerId(int sellerId);
     List<SpuEntity> getSpuByClassifyId(int classifyId);
+
 }

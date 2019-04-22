@@ -20,4 +20,5 @@ public interface ProductValueMapper {
     int deleteProductValueById(int id);
     int updateProductValueById(ProductValueEntity productValueEntity);
     List<ProductValueEntity> getProductValueByGoodsId(int goodsId);
+    ProductValueEntity getProductValueById(int id);
 }
