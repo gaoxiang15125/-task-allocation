@@ -16,6 +16,11 @@ import java.util.List;
 @Mapper
 @Repository
 public interface SpuMapper {
+    /**
+     * 没有status属性，获取商品时没有检索status属性
+     * @param spuEntity
+     * @return
+     */
     //基础的数据操作接口
     int addSpu(SpuEntity spuEntity);
     int deleteSpuById(int goodId);

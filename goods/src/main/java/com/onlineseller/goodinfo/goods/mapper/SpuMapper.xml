@@ -20,7 +20,7 @@
         SELECT * FROM spu WHERE goodId=#{goodId}
     </select>
     <select id="getAllSpu" resultType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
-        SELECT * FROM spu
+        SELECT * FROM spu 
     </select>
     <select id="getSpuByLikeName" parameterType="string" resultType="com.onlineseller.goodinfo.goods.entity.SpuEntity">
         SELECT * from spu where name like #{likeWord}
