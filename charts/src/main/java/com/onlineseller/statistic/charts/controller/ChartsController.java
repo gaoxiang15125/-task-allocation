@@ -22,4 +22,12 @@ public class ChartsController {
     public List<GoodsShowVo> getChartsInfoForSeller(int sellerId){
         return null;
     }
+
+    public List<GoodsShowVo> getChartsInfoForUser(int clientId){
+        return null;
+    }
+
+    public List<GoodsShowVo> getChartsInfoForRoot(){
+        return null;
+    }
 }

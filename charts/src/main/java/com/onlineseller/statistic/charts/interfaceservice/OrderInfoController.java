@@ -32,4 +32,6 @@ public class OrderInfoController {
     public List<Order> getAllOrder(Timestamp beginsTime,Timestamp endsTime){
         return null;
     }
+
+
 }
