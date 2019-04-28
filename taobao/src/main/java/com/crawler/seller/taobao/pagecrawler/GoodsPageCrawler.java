@@ -1,8 +1,6 @@
 package com.crawler.seller.taobao.pagecrawler;
 
-import com.alibaba.fastjson.JSONObject;
 import com.crawler.seller.taobao.tools.HttpTools;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -56,6 +54,7 @@ public class GoodsPageCrawler {
      */
     public static String getGoodsInfo(String goodsUrl){
         Document document = httpTools.getDocumentByJSoupGet(goodsUrl);
+        System.out.println(document.toString());
         Element elementScript = document.getElementsByTag("script").first();
         String g_configs = elementScript.data().split(";")[0];
         //根据config内容构造相应的Json
@@ -75,7 +74,7 @@ public class GoodsPageCrawler {
             String value = keyValue[1].trim();
             value = value.substring(0,value.length()-1);
             jsonMapForInfo.put(key,value);
-            System.out.println(key+"   "+value);
+            //System.out.println(key+"   "+value);
         }
         //至此，可以通过Map获取JavaScript中配置信息，构造Url后即可获取商品
         //构造目标Url
@@ -84,11 +83,11 @@ public class GoodsPageCrawler {
         picUrl = picUrl.split(" ? ")[2];
         picUrl = picUrl.split(" : ")[0];
         picUrl = picUrl.substring(1,picUrl.length()-1);
+        //Url地址
         List<String> picUrls = getPicUrlForGoods(HttpTools.httpTag+picUrl);
-        for (String picPath:picUrls){
-            System.out.println(picPath);
+        for(int i=0;i<picUrls.size();i++){
+            System.out.println(picUrls.get(i));
         }
-
         //下面是获取商品自然信息
         Elements elements = document.getElementsByClass("attributes-list").first().children();
         //elements = elements.first().children();
@@ -107,12 +106,23 @@ public class GoodsPageCrawler {
             }
             //System.out.println(element);
         }
+
         return null;
     }
 
+    public static void getGoodsPrice(Document document){
+        Elements elements = document.getElementsByClass("tb-rmb-num");
+        for(Element element:elements){
+            System.out.println("~~~~~~~~~~~~~~");
+            System.out.println(element);
+        }
+        Element element = elements.first();
+        System.out.println(element.text());
+    }
     public static void main(String[]args){
         String goodsUrl="https://item.taobao.com/item.htm?spm=2013.1.20160405.7.7bfe2f40N3ZjKp&scm=1007.13066.127283.0&id=43333939583";
+        getGoodsPrice(httpTools.getDocumentByJSoupGet(goodsUrl));
         //getGoodsInfo("https://item.taobao.com/item.htm?spm=a1z10.1-c.w5003-18657069090.1.7adc16ec3Dov1x&id=585174273980&scene=taobao_shop");
-        getGoodsInfo(goodsUrl);
+        //getGoodsInfo(goodsUrl);
     }
 }
