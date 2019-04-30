@@ -1,6 +1,5 @@
 package com.crawler.seller.taobao.dao;
 
-import com.crawler.seller.taobao.entity.AttributeNameEntity;
 import com.crawler.seller.taobao.entity.ProductNameEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,4 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  **/
 public interface ProductNameDao extends JpaRepository<ProductNameEntity,Integer> {
     //有个save方法就足够用了，不需要手写任何方法
+    boolean existsByProductName(String productName);
+    ProductNameEntity findProductNameEntityByProductName(String productName);
 }

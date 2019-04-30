@@ -3,8 +3,11 @@ package com.crawler.seller.taobao.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -21,6 +24,7 @@ import javax.persistence.Id;
 public class SpuEntity {
     @Id
     //商品ID
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     int goodId;
     String description;
     //商品的用户评分，根据用户评论进行计算
@@ -40,14 +44,15 @@ public class SpuEntity {
     //商品的状态
     int status;
 
-    public SpuEntity(String description, String picUrl, double goodScore, int brandId, int sellerId, int classifyId, String name, double price) {
+    public SpuEntity(String description, double goodScore, int brandId, int sellerId, int classifyId, String name, String picUrl, double price, int status) {
         this.description = description;
-        this.picUrl = picUrl;
         this.goodScore = goodScore;
         this.brandId = brandId;
         this.sellerId = sellerId;
         this.classifyId = classifyId;
         this.name = name;
+        this.picUrl = picUrl;
         this.price = price;
+        this.status = status;
     }
 }

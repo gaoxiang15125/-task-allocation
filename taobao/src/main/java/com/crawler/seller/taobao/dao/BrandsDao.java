@@ -13,4 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  **/
 public interface BrandsDao extends JpaRepository<BrandsEntity,Integer> {
     //有个save方法就足够用了，不需要手写任何方法
+    boolean existsByBrandName(String brandName);
+    BrandsEntity findBrandsEntityByBrandName(String brandName);
 }

@@ -29,6 +29,14 @@ public class RegexTools {
         }
         return result;
     }
+
+    /**
+     * @param goodsUrl 包含&amp;的url字符串
+     * @return 清除amp;的url字符串
+     */
+    public static String removeAmpFromUrl(String goodsUrl){
+        return goodsUrl.replaceAll("amp;","");
+    }
     public static void main(String[]args){
         getRegexKeyValueFromJSON(JsonTest.testJson,"descUrl");
     }

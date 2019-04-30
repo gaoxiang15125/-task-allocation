@@ -14,4 +14,6 @@ import java.awt.print.Book;
  **/
 public interface AttributeNameDao extends JpaRepository<AttributeNameEntity,Integer> {
     //有个save方法就足够用了，不需要手写任何方法
+    boolean existsByQualityName(String qualityName);
+    AttributeNameEntity findAttributeNameEntityByQualityName(String qualityName);
 }

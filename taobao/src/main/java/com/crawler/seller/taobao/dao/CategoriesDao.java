@@ -13,4 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  **/
 public interface CategoriesDao extends JpaRepository<CategoriesEntity,Integer> {
     //有个save方法就足够用了，不需要手写任何方法
+    boolean existsByClassifyName(String classifyName);
+    CategoriesEntity findCategoriesEntityByClassifyName(String classifyName);
 }
