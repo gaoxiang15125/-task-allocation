@@ -14,7 +14,7 @@ public class RandomTools {
     static Random r=new Random(System.currentTimeMillis());
     public static DecimalFormat decimalFormat = new DecimalFormat("#.0");
 
-    public static double[] getUnchangePrice(double rangePrice,int randomNum){
+    public static double[] getUnChangePrice(double rangePrice, int randomNum){
         double[] moneyChange = new double[randomNum];
         for(int i=0;i<randomNum;i++){
             moneyChange[i] = rangePrice;
@@ -31,10 +31,11 @@ public class RandomTools {
     public static double getRandom(double randomRange){
         return Double.parseDouble(decimalFormat.format(r.nextDouble()*randomRange));
     }
-//    public static void main(String[] args){
-//        double[] doubles = getRandomPrice(100,10);
-//        for (double number:doubles){
-//            System.out.println(number);
-//        }
-//    }
+
+    public static void main(String[] args){
+        double[] doubles = getRandomPrice(100,10);
+        for (double number:doubles){
+            System.out.println(number);
+        }
+    }
 }

@@ -8,7 +8,7 @@
         INSERT INTO categories(classifyName, fatherId) VALUES (#{classifyName}, #{fatherId})
     </insert>
     <update id="updateCategoriesById" parameterType="com.onlineseller.goodinfo.goods.entity.CategoriesEntity">
-        UPDATE categories set classifyName=#{productId},fatherId=#{fatherId} where classifyId =#{classifyId}
+        UPDATE categories set classifyName=#{classifyName},fatherId=#{fatherId} where classifyId =#{classifyId}
     </update>
     <delete id="deleteCategoriesById">
         DELETE FROM categories WHERE classifyId=#{classifyId}

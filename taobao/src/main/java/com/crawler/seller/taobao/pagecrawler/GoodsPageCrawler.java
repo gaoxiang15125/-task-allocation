@@ -9,11 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -31,7 +27,7 @@ import java.util.Map;
 @RestController
 public class GoodsPageCrawler {
 
-    public static HttpTools httpTools = HttpTools.getInstrance();
+    public static HttpTools httpTools = HttpTools.getInstance();
 
     @Autowired
     AttributeNameDao attributeNameDao;
@@ -87,7 +83,7 @@ public class GoodsPageCrawler {
         if(moneyRange.length==2){
             moneyPlus = moneyRange[1]-moneyRange[0];
         }else{
-            moneyPlus = moneyRange[0];
+            moneyPlus = 0;
         }
 
         //至此，可以通过Map获取JavaScript中配置信息，构造Url后即可获取商品
@@ -139,7 +135,7 @@ public class GoodsPageCrawler {
                 if(moneyRange.length==2){
                     moneyChangeRange = RandomTools.getRandomPrice(moneyPlus,strNum.length);
                 }else{
-                    moneyChangeRange = RandomTools.getUnchangePrice(moneyPlus,strNum.length);
+                    moneyChangeRange = RandomTools.getUnChangePrice(moneyPlus,strNum.length);
                 }
                 if(productNameDao.existsByProductName(key)){
                     productNameEntity = productNameDao.findProductNameEntityByProductName(key);
