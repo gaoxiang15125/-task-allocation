@@ -9,7 +9,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import java.util.Map;
  * @email: 630268696@qq.com
  **/
 @RestController
+@RequestMapping(value = "/crawler")
 public class GoodsPageCrawler {
 
     public static HttpTools httpTools = HttpTools.getInstance();
@@ -73,8 +76,8 @@ public class GoodsPageCrawler {
     /**
      * @return 待定
      */
-    @PostMapping("/crawler")
-    public String getGoodsInfo(String goodsUrl){
+    @PostMapping("/crawlerGoods")
+    public String getGoodsInfo(String goodsUrl,String classifyInfo,int sellerId){
         //String goodsUrl="https://item.taobao.com/item.htm?spm=2013.1.20160405.7.7bfe2f40N3ZjKp&scm=1007.13066.127283.0&id=43333939583";
         Document document = httpTools.getDocumentByJSoupGet(goodsUrl);
         String goodsName = document.getElementsByClass("tb-main-title").text();
@@ -225,8 +228,6 @@ public class GoodsPageCrawler {
         return goodsMap;
     }
 
-    public static String classifyInfo ="游戏外设";
-    public static int sellerId=0;
     public static void main(String[]args){
         String goodsUrl="https://item.taobao.com/item.htm?spm=2013.1.20160405.7.7bfe2f40N3ZjKp&scm=1007.13066.127283.0&id=43333939583";
         System.out.println(httpTools.getDocumentByJSoupGet(goodsUrl));

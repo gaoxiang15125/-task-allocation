@@ -9,7 +9,9 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -76,13 +78,13 @@ public class HttpTools {
         return document;
     }
     //下面是附带请求头与基本cookie的Url请求
-    public Document getDocumentByOkHttpClientForClassifyUrl(String stringUrl){
+    public String getDocumentByOkHttpClientForClassifyUrl(String stringUrl){
         Request.Builder request = new Request.Builder().url(stringUrl);
         Map<String,String> headers = getHeadsAndCookieMap(headersAndCookie);
         for(String string:headers.keySet()){
             request.addHeader(string,headers.get(string));
         }
-        return new Document(okHttpGet(request.build()));
+        return okHttpGet(request.build());
     }
 
     /**
@@ -103,11 +105,6 @@ public class HttpTools {
         }
         String goodsList = GzipTools.uncompressString(responseString);
         //System.out.println(goodsList);
-        String[] findIdWithoutDocument = goodsList.split("data-id=");
-        Map<String,String> resultId = new HashMap<>();
-        for(String string:findIdWithoutDocument){
-            RegexTools.getNumberFromStringBegins(string);
-        }
         return goodsList;
     }
 
