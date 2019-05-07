@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>实例</title>
@@ -83,6 +83,75 @@
             el:'#appLink',
             data: {
                 link: '<a href="https://translate.google.cn">这是一个链接</a>'
+            }
+        })
+    </script>
+    <div id="javaScriptLine">
+        {{number/10}}
+        <span v-pre>{{isOK? '确定':'取消'}}</span>
+        {{text.split('.').reverse().join(',')}}
+    </div>
+    <script>
+        var apt = new Vue({
+            el:'#javaScriptLine',
+            data:{
+                number:100,
+                isOk:false,
+                text:'123.456'
+            }
+        })
+    </script>
+    <div id="apkt">
+        <a v-bind:href="url">链接</a>
+        <img v-bind:src="imgUrl">
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#apkt',
+            data:{
+                url:'http://www.gothub.com',
+                imgUrl:'https://img.alicdn.com/imgextra/i4/143719062/TB25xTvkr8kpuFjy0FcXXaUhpXa_!!143719062.jpg'
+            }
+        })
+    </script>
+    <div id="assk">
+        <p v-if="showInfo">一段可以隐藏的文本信息</p>
+        <button v-on:click="handleClose">点击按钮隐藏文本信息</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#assk',
+            data:{
+                showInfo:true
+            },
+            methods:{
+                handleClose:function(){
+                    if (this.showInfo) {
+                        this.showInfo = false;
+                    }else{
+                        this.showInfo=true;
+                    }
+                }
+            }
+
+        })
+    </script>
+    <div id="count">
+        点击次数:{{counter}}
+        <button @click="counter++">+ 1</button>
+        <button @click="handleAdd">+10</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#count',
+            data: {
+                counter:0
+            },
+            methods:{
+                handleAdd:function(count){
+                    count = count||1,
+                    this.counter += count
+                }
             }
         })
     </script>
