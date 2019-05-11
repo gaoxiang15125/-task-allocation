@@ -1,18 +1,24 @@
 eureka:
   instance:
     hostname: localhost
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
-    fetch-registry: false
+    fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://192.168.47.87:1000/eureka/
+      #defaultZone: http://${eureka.instance.hostname}:1111/eureka/
 spring:
+  cloud:
+    client:
+      ipAddress: 192.168.47.247
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://192.168.47.8/gaoxiang
     username: root
     password: 18805156570
   application:
-    name: goods-service
+    name: goodsservice
 server:
   port: 10000

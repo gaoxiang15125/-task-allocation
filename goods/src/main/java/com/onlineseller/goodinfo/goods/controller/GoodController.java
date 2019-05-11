@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,8 +21,7 @@ import java.util.List;
  * @create: 2019-04-16 11:48
  * @email: 630268696@qq.com
  **/
-@Controller
-@RequestMapping(name = "/goodsService")
+@RestController
 public class GoodController {
     @Autowired
     GoodsService goodsService;
@@ -40,13 +42,19 @@ public class GoodController {
     }
 
     @RequestMapping(value = "/getGoodsBySellerId",method = RequestMethod.GET)
-    public List<GoodsVo> getGoodsBySellerID(int sellerId){
-        return goodsService.getGoodsVoBySellerId(sellerId);
+    public List<GoodsVo> getGoodsBySellerID(int id){
+        List<GoodsVo> goodsVos = new ArrayList<>();
+        goodsVos.add(new GoodsVo());
+        return goodsVos;
+        //        return goodsService.getGoodsVoBySellerId(sellerId);
     }
 
     @RequestMapping(value = "/getGoodsByClassifyId",method = RequestMethod.GET)
     public List<GoodsVo> getGoodsByClassifyID(int classifyID){
-        return goodsService.getGoodsVoByClassifyId(classifyID);
+        List<GoodsVo> goodsVos = new ArrayList<>();
+        goodsVos.add(new GoodsVo());
+        return goodsVos;
+        //return goodsService.getGoodsVoByClassifyId(classifyID);
     }
 
     @RequestMapping(value = "/getAllGoods",method = RequestMethod.GET)
