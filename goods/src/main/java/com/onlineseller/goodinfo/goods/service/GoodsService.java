@@ -109,6 +109,7 @@ public class GoodsService {
     }
 
     public List<GoodsVo> getGoodsByLikeName(String likeWord){
+        likeWord = '%'+likeWord+'%';
         List<SpuEntity> spuEntities = spuMapper.getSpuByLikeName(likeWord);
         List<GoodsVo> goodsVos = new ArrayList<>();
         for(SpuEntity spuEntity:spuEntities){

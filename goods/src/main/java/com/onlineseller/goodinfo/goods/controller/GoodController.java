@@ -43,18 +43,18 @@ public class GoodController {
 
     @RequestMapping(value = "/getGoodsBySellerId",method = RequestMethod.GET)
     public List<GoodsVo> getGoodsBySellerID(int id){
-        List<GoodsVo> goodsVos = new ArrayList<>();
-        goodsVos.add(new GoodsVo());
-        return goodsVos;
-        //        return goodsService.getGoodsVoBySellerId(sellerId);
+//        List<GoodsVo> goodsVos = new ArrayList<>();
+//        goodsVos.add(new GoodsVo());
+//        return goodsVos;
+        return goodsService.getGoodsVoBySellerId(id);
     }
 
     @RequestMapping(value = "/getGoodsByClassifyId",method = RequestMethod.GET)
     public List<GoodsVo> getGoodsByClassifyID(int classifyID){
-        List<GoodsVo> goodsVos = new ArrayList<>();
-        goodsVos.add(new GoodsVo());
-        return goodsVos;
-        //return goodsService.getGoodsVoByClassifyId(classifyID);
+//        List<GoodsVo> goodsVos = new ArrayList<>();
+//        goodsVos.add(new GoodsVo());
+//        return goodsVos;
+        return goodsService.getGoodsVoByClassifyId(classifyID);
     }
 
     @RequestMapping(value = "/getAllGoods",method = RequestMethod.GET)
